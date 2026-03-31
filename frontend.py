@@ -24,7 +24,7 @@ if st.button("Predict Premium Category"):
         "weight": weight,
         "height": height,
         "income_lpa": income_lpa,
-        "smoker": smoker,
+        "is_smoker": smoker,
         "city": city,
         "occupation": occupation
     }

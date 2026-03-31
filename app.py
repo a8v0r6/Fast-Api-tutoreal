@@ -80,5 +80,14 @@ def predict_premium(data: UserInput):
     }])
     
     prediction = model.predict(input_df)[0]
+    probabilities = model.predict_proba(input_df)[0]
+    confidence = float(max(probabilities))
+    class_probabilities = {cls: float(prob) for cls, prob in zip(model.classes_, probabilities)}
     
-    return JSONResponse(status_code=200, content={'prediction' : prediction}) 
+    return JSONResponse(status_code=200, content={
+        "response": {
+            "predicted_category": prediction,
+            "confidence": f"{confidence*100}%",
+            "class_probabilities": class_probabilities
+        }
+    }) 
